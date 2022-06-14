@@ -1,0 +1,42 @@
+{{#*inline 'tweet'}}
+  <p>
+    <strong>
+      {{ user.name }}
+    </strong>
+    <small>
+      (@{{ user.screen_name }})
+    </small>
+  </p>
+  <p>{{{ linkify full_text }}}</p>
+  {{#each entities.media}}
+    <img src="{{ media_url_https }}" />
+  {{/each}}
+{{/inline}}
+
+{{#each tweets}}
+  {{> tweet this}}
+
+  {{#if retweeted_status}}
+  <blockquote>
+    {{> tweet retweeted_status}}
+  </blockquote>
+  {{/if}}
+
+  {{#if quoted_status}}
+  <blockquote>
+    {{> tweet quoted_status}}
+  </blockquote>
+  {{/if}}
+
+  <p>
+    <small>
+      <a href="https://twitter.com/{{ user.screen_name }}/status/{{ id_str }}">
+        {{ created_at }}
+      </a>
+    </small>
+  </p>
+
+  {{#unless @last}}
+    <hr>
+  {{/unless}}
+{{/each}}

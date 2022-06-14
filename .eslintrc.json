@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "semi": ["error", "never"]
+  },
+  "env": {
+    "es2020": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "node_modules/**/*"
+  ]
+}

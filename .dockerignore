@@ -1,0 +1,7 @@
+.env
+.eslintrc.json
+node_modules
+npm-debug.log
+public
+README.md
+test
