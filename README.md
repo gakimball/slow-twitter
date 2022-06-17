@@ -48,9 +48,12 @@ Each digest has a `name` and runs on a schedule according to
 tweet posted to your timeline since the last digest (up to a maximum of 200, the limit of
 Twitter's API).
 
-The config file also supports an optional `mute` property, which is an array of strings to filter
-out of each digest. Keywords starting with `@` will filter out tweets and retweets by those specific
-users, as well as mentions of those users.
+The config file also supports these optional settings:
+
+- `mute`: an array of strings to filter out of each digest. Keywords starting with `@` will filter
+  out retweets, quote tweets, and mentions of those users.
+- `max_feed_items`: maximum number of items kept in the JSON Feed. When a new one is added over the
+  limit, the oldest item is removed. The default value is 50.
 
 ## Usage
 
