@@ -7,10 +7,12 @@
       (@{{ user.screen_name }})
     </small>
   </p>
-  <p>{{{ linkify full_text }}}</p>
-  {{#each entities.media}}
-    <img src="{{ media_url_https }}" />
-  {{/each}}
+  {{#unless retweeted_status}}
+    <p>{{{ linkify full_text }}}</p>
+    {{#each entities.media}}
+      <img src="{{ media_url_https }}" />
+    {{/each}}
+  {{/unless}}
 {{/inline}}
 
 {{#each tweets}}
