@@ -7,27 +7,24 @@
       (@{{ user.screen_name }})
     </small>
   </p>
+
   {{#unless retweeted_status}}
     <p>{{{ linkify full_text }}}</p>
     {{#each entities.media}}
       <img src="{{ media_url_https }}" />
     {{/each}}
   {{/unless}}
-{{/inline}}
-
-{{#each tweets}}
-  {{> tweet this}}
 
   {{#if retweeted_status}}
-  <blockquote>
-    {{> tweet retweeted_status}}
-  </blockquote>
+    <blockquote>
+      {{> tweet retweeted_status}}
+    </blockquote>
   {{/if}}
 
   {{#if quoted_status}}
-  <blockquote>
-    {{> tweet quoted_status}}
-  </blockquote>
+    <blockquote>
+      {{> tweet quoted_status}}
+    </blockquote>
   {{/if}}
 
   <p>
@@ -37,6 +34,11 @@
       </a>
     </small>
   </p>
+
+{{/inline}}
+
+{{#each tweets}}
+  {{> tweet this}}
 
   {{#unless @last}}
     <hr>
