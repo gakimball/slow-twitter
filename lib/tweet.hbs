@@ -9,8 +9,9 @@
   </p>
 
   {{#unless retweeted_status}}
-    <p>{{{ linkify full_text }}}</p>
-    {{#each entities.media}}
+    <p>{{{ fullText this }}}</p>
+
+    {{#each extended_entities.media}}
       <img src="{{ media_url_https }}" />
     {{/each}}
   {{/unless}}
