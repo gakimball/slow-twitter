@@ -1,13 +1,26 @@
-{{#*inline 'tweet'}}
-  <p>
-    <strong>
-      {{ user.name }}
-    </strong>
-    <small>
-      (@{{ user.screen_name }})
-    </small>
-  </p>
+{{#*inline 'author'}}
+  <strong>
+    {{ user.name }}
+  </strong>
+  <small>
+    (@{{ user.screen_name }})
+  </small>
+{{/inline}}
 
+{{#*inline 'tweet'}}
+  {{!-- For RTs, we already rendered the author and RT author in the parent render --}}
+  {{#unless is_retweet}}
+    <p>
+      {{!-- For RTs, we print the author's name followed by the person who did the RT --}}
+      {{#if retweeted_status}}
+        {{> author retweeted_status}}
+        🔄
+      {{/if}}
+      {{> author this}}
+    </p>
+  {{/unless}}
+
+  {{!-- For RTs, there's nothing in the parent status we we need, so we just show the RT --}}
   {{#unless retweeted_status}}
     <p>{{{ fullText this }}}</p>
 
@@ -17,9 +30,7 @@
   {{/unless}}
 
   {{#if retweeted_status}}
-    <blockquote>
-      {{> tweet retweeted_status}}
-    </blockquote>
+    {{> tweet retweeted_status is_retweet=true }}
   {{/if}}
 
   {{#if quoted_status}}
@@ -28,14 +39,16 @@
     </blockquote>
   {{/if}}
 
-  <p>
-    <small>
-      <a href="https://twitter.com/{{ user.screen_name }}/status/{{ id_str }}">
-        {{ created_at }}
-      </a>
-    </small>
-  </p>
-
+  {{!-- For RTs, we only show the permalink of the RT, not the parent status --}}
+  {{#unless retweeted_status}}
+    <p>
+      <small>
+        <a href="https://twitter.com/{{ user.screen_name }}/status/{{ id_str }}">
+          {{ created_at }}
+        </a>
+      </small>
+    </p>
+  {{/unless}}
 {{/inline}}
 
 {{#each tweets}}
