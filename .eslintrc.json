@@ -1,6 +1,10 @@
 {
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
   ],
   "rules": {
     "semi": ["error", "never"]
@@ -11,5 +15,6 @@
   },
   "ignorePatterns": [
     "node_modules/**/*"
-  ]
+  ],
+  "parser": "@typescript-eslint/parser"
 }

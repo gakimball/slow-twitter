@@ -1,10 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const cron = require('node-cron')
-const http = require('http')
-const createDigest = require('./lib/create-digest')
-const { feedPath } = require('./lib/get-feed')
-const config = require('./public/config.json')
+import fs from 'node:fs'
+import path from 'node:path'
+import http from 'node:http'
+import cron from 'node-cron'
+import { createDigest } from './create-digest'
+import { feedPath } from './get-feed'
+import { config } from './config'
 
 const iconPath = path.join(process.cwd(), 'icon.png')
 

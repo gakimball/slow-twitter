@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint '**/*.js'"
+    "lint": "tsc --noEmit && eslint 'src/**/*.ts'",
+    "build": "tsc"
   },
-  "author": "",
+  "author": "Geoff Kimball (http://geoffkimball.com)",
   "license": "MIT",
   "dependencies": {
     "alter": "^0.2.0",
@@ -17,7 +18,14 @@
     "oauth": "^0.9.15"
   },
   "devDependencies": {
-    "eslint": "^8.13.0"
+    "@types/node": "^18.0.1",
+    "@types/node-cron": "^3.0.2",
+    "@types/oauth": "^0.9.1",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.13.0",
+    "twitter-api-types": "github:chasset/twitter-api-types",
+    "typescript": "^4.7.4"
   },
   "engines": {
     "node": ">=14.18"

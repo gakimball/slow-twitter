@@ -1,9 +1,9 @@
-const fs = require('fs')
-const { format, formatRFC3339 } = require('date-fns')
-const getTweets = require('./get-tweets')
-const { feedPath, getFeed } = require('./get-feed')
-const createHtml = require('./create-html')
-const config = require('../public/config.json')
+import fs from 'fs'
+import { format, formatRFC3339 } from 'date-fns'
+import { getTweets } from './get-tweets'
+import { feedPath, getFeed } from './get-feed'
+import { createHtml } from './create-html'
+import { config } from './config'
 
 const MAX_FEED_ITEMS = config.max_feed_items ?? 50
 
@@ -11,9 +11,9 @@ const MAX_FEED_ITEMS = config.max_feed_items ?? 50
  * Create a new digest entry in the feed. If it's the first entry, the last 50 tweets will be
  * fetched. For subsequent entries, all tweets posted since the last digest are fetched, up to a
  * maximum of 200.
- * @param {string} name - Digest name as defined in the config.
+ * @paramname - Digest name as defined in the config.
  */
-const createDigest = async (name) => {
+export const createDigest = async (name: string) => {
   try {
     const feed = getFeed()
     const tweets = await getTweets(feed._last_id)
@@ -38,5 +38,3 @@ const createDigest = async (name) => {
     console.error(err)
   }
 }
-
-module.exports = createDigest

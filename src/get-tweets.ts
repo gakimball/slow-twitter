@@ -1,6 +1,7 @@
-const oauth = require('oauth')
-const { matchesText, matchesUser } = require('./tweet-filters')
-const config = require('../public/config.json')
+import oauth from 'oauth'
+import { Status } from 'twitter-api-types'
+import { matchesText, matchesUser } from './tweet-filters'
+import { config } from './config'
 
 const client = new oauth.OAuth(
   'https://api.twitter.com/oauth/request_token',
@@ -14,10 +15,10 @@ const client = new oauth.OAuth(
 
 /**
  * Get the most recent tweets on the user's timeline.
- * @param {string} sinceId - Fetch all tweets posted after this ID was posted.
+ * @param sinceId - Fetch all tweets posted after this ID was posted.
  * @returns Array of tweets.
  */
-const getTweets = (sinceId) => new Promise((resolve, reject) => {
+export const getTweets = (sinceId: string) => new Promise<Status[]>((resolve, reject) => {
   const params = [
     `count=${sinceId ? 200 : 50}`,
     'tweet_mode=extended',
@@ -35,10 +36,10 @@ const getTweets = (sinceId) => new Promise((resolve, reject) => {
     config.twitter_api.access_key,
     config.twitter_api.access_secret,
     (err, data) => {
-      if (err) {
+      if (err || !data) {
         reject(err)
       } else {
-        const tweets = JSON.parse(data).reverse()
+        const tweets: Status[] = JSON.parse(data.toString()).reverse()
 
         if (config.mute) {
           const filteredTweets = tweets.filter(
@@ -61,5 +62,3 @@ const getTweets = (sinceId) => new Promise((resolve, reject) => {
     },
   )
 })
-
-module.exports = getTweets
