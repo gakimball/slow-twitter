@@ -17,6 +17,7 @@ interface Config {
   }>;
   max_feed_items?: number;
   mute: string[];
+  frontend?: string;
 }
 
 export const config: Config = JSON.parse(readFileSync(feedPath).toString())

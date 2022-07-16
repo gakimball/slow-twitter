@@ -54,6 +54,7 @@ The config file also supports these optional settings:
   out retweets, quote tweets, and mentions of those users.
 - `max_feed_items`: maximum number of items kept in the JSON Feed. When a new one is added over the
   limit, the oldest item is removed. The default value is 50.
+- `frontend`: an alternate domain to use for Twitter links, e.g. `https://nitter.net`.
 
 ## Usage
 

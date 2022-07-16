@@ -3,6 +3,9 @@ import * as path from 'node:path'
 import Handlebars from 'handlebars'
 import alter from 'alter'
 import { Status } from 'twitter-api-types'
+import { config } from './config'
+
+const frontend = config.frontend ?? 'https://twitter.com'
 
 Handlebars.registerHelper('fullText', (tweet: Status) => {
   const text = tweet.full_text ?? ''
@@ -40,6 +43,10 @@ Handlebars.registerHelper('fullText', (tweet: Status) => {
       }
     })
   ])
+})
+
+Handlebars.registerHelper('permalink', (tweet: Status) => {
+  return `${frontend}/${tweet.user.screen_name}/status/${tweet.id_str}`
 })
 
 const templatePath = path.join(process.cwd(), './template/tweet.hbs')
