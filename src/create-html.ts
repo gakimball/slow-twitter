@@ -3,6 +3,7 @@ import * as path from 'node:path'
 import Handlebars from 'handlebars'
 import alter from 'alter'
 import { Status } from 'twitter-api-types'
+import { minify } from 'html-minifier'
 import { config } from './config'
 
 const frontend = config.frontend ?? 'https://twitter.com'
@@ -52,4 +53,6 @@ Handlebars.registerHelper('permalink', (tweet: Status) => {
 const templatePath = path.join(process.cwd(), './template/tweet.hbs')
 const template = Handlebars.compile(fs.readFileSync(templatePath).toString())
 
-export const createHtml = (tweets: Status[]) => template({ tweets })
+export const createHtml = (tweets: Status[]) => minify(template({ tweets }), {
+  collapseWhitespace: true,
+})
