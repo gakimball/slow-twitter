@@ -6,7 +6,8 @@ EXPOSE 8080
 VOLUME /usr/src/app/public
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
+RUN npm run build
 COPY . .
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
