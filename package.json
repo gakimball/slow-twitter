@@ -4,7 +4,7 @@
   "description": "Read Twitter the boring way",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "dev": "tsc --watch",
     "lint": "tsc --noEmit && eslint 'src/**/*.ts'",
     "build": "tsc"
