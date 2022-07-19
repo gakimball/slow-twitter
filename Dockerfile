@@ -7,7 +7,10 @@ VOLUME /usr/src/app/public
 
 COPY package*.json ./
 RUN npm ci
+
+COPY tsconfig.json ./
 RUN npm run build
+
 COPY . .
 
 CMD ["npm", "start"]
