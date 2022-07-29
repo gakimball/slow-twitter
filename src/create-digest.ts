@@ -20,7 +20,8 @@ export const createDigest = async (name: string) => {
     const date = Date.now()
     const dateStamp = formatRFC3339(date)
 
-    feed._last_id = tweets[0].id_str
+    // The last status in the list is the most recent
+    feed._last_id = tweets.at(-1)?.id_str ?? ''
 
     const item = {
       id: dateStamp,
