@@ -77,6 +77,27 @@ node test/test-html.js > timeline.html
 node test/test-digest.js
 ```
 
+## To Do
+
+- [x] Format RTs correctly
+- [x] Auto-linkify text
+- [x] Figure out RTs of RTs
+- [x] Max number of entries in feed
+- [x] Apply mute filters to links
+- [x] Fix duplicate content for retweets
+- [x] Expand URLs
+- [x] Reverse order of posts (old → new)
+- [x] Show/indicate multiple images?
+- [x] Option for alternate frontend (e.g. Nitter)
+- [x] Render RTs flat, not as blockquotes
+- [x] Compress HTML
+- [x] Format line breaks
+- [ ] Add link previews
+- [ ] URL filters not working?
+- [ ] Handle videos
+- [ ] Strip UTM
+- [ ] Unicode issues (emoji don't display properly)
+
 ## License
 
 MIT &copy; Geoff Kimball
